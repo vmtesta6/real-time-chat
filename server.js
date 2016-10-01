@@ -1,26 +1,4 @@
-'use strict';
-
-var PORT = process.env.PORT || 9100;
-var express = require("express");
-var app = express();
-var http = require("http").Server(app);
-var io = require("socket.io")(http);
-var moment = require("moment");
-
-app.use(express.static(__dirname + '/public'));
-
-var clientInfo = {};
-
-function sendAllUsers(socket) {
-    var info = clientInfo[socket.id];
-    var users = [];
-
-    if(typeof info === 'undefined') {
-        return;
-    }
-
-    Object.keys(clientInfo).forEach(function (socketId) {
-       var userInfo = clientInfo[socketId];
+= clientInfo[socketId];
 
         if(info.room === userInfo.room) {
             users.push(userInfo.name);
